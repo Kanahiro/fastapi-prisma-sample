@@ -1,0 +1,32 @@
+[project]
+name = "fastapi-prisma"
+version = "0.1.0"
+description = "Add your description here"
+dependencies = [
+    "fastapi>=0.111.0",
+    "prisma>=0.13.1",
+    "geojson-pydantic>=1.1.0",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "ruff>=0.4.8",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastapi_prisma"]
+
+[tool.rye.scripts]
+migrate-dev = "prisma migrate dev"
+dev = "fastapi dev src/fastapi_prisma/main.py"
+start = "fastapi run src/fastapi_prisma/main.py"
